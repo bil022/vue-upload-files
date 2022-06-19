@@ -22,7 +22,6 @@
     </button>
 
     <div class="alert alert-light" role="alert">{{ message }}</div>
-
     <div class="card">
       <div class="card-header">List of Files</div>
       <ul class="list-group list-group-flush">
@@ -66,11 +65,13 @@ export default {
         this.progress = Math.round((100 * event.loaded) / event.total);
       })
         .then(response => {
+          console.log({response});
           this.message = response.data.message;
           return UploadService.getFiles();
         })
         .then(files => {
           this.fileInfos = files.data;
+          console.log(this.fileInfos);
         })
         .catch(() => {
           this.progress = 0;
